@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaHamburger, FaConciergeBell } from 'react-icons/fa'; // Importing Font Awesome Icons
 import UpdateStatus from './UpdateStatus';
 import OtherStatus from './otherStatus';
+import UpdateStatusLocation from './UpdateStatusLocation'
+import UpdateOtherStatus from './UpdateOtherStatus'
 
 const TwoButtonComponent = () => {
   const [showFoodCart, setShowFoodCart] = useState(true); // Track visibility of Food Delivery
@@ -63,8 +65,8 @@ const TwoButtonComponent = () => {
       </div>
 
       {/* Conditional Components */}
-      {showFoodCart && <UpdateStatus section="food" />}
-      {showServicesCart && <OtherStatus section="services" />}
+      {showFoodCart && <UpdateStatusLocation section="food" />}
+      {showServicesCart && <UpdateOtherStatus section="services" />}
     </div>
   );
 };

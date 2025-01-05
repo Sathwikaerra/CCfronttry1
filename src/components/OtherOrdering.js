@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Loader";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { userActions } from "../store/reducers";
 
 const Ordering = () => {
@@ -12,6 +12,8 @@ const Ordering = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const currentUserId = localStorage.getItem("UserId");
+  const {currentUser} =useSelector((state)=>state.user)
+
 
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
@@ -67,6 +69,7 @@ const Ordering = () => {
         requestedBy: currentUserId,
         status: "pending",
         identifier,
+        phoneNumber:currentUser.phoneNumber
       });
 
       // Fetch Updated Cart
@@ -143,7 +146,7 @@ const Ordering = () => {
            className="w-full py-2 px-5 bg-gradient-to-r from-blue-400 to-blue-600 text-white text-md font-semibold rounded-lg shadow-lg hover:opacity-90 transition duration-300"
            disabled={isRequesting}
          >
-           Already Requested
+           Already Requested please check the cart for status
          </button>
 
           }

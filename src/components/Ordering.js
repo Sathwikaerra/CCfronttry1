@@ -4,7 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Loader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/reducers";
 
 const Ordering = () => {
@@ -12,6 +12,7 @@ const Ordering = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const currentUserId = localStorage.getItem("UserId");
+  const {currentUser} =useSelector((state)=>state.user)
 
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
@@ -52,6 +53,7 @@ const Ordering = () => {
       await axios.post(`/user/send-otp/${userId}`, {
         email: user.email,
         id: currentUserId,
+        
       });
 
       // Submit Request 
@@ -60,6 +62,9 @@ const Ordering = () => {
         serviceCount: selectedBars.length,
         status: "pending",
         identifier,
+        phoneNumber:currentUser.phoneNumber,
+        
+
       });
 
       // Fetch Updated Cart

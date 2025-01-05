@@ -16,6 +16,7 @@ import { MdLocalShipping } from "react-icons/md";
 import { GiDeliveryDrone } from "react-icons/gi";
 import { BiPackage } from "react-icons/bi";
 
+import Animation from './Animation'
 
 
 
@@ -30,8 +31,21 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [users, setUsers] = useState([]);
+  const [welcomeLoading,setWelcomeLoading]=useState(true)
   
   const isUserLoggedIn = useSelector((state) => state.user.isloggedIn);
+
+  useEffect(() => {
+   
+   
+      setTimeout(() => {
+        setWelcomeLoading(false);
+      }, 4000);
+
+    
+    // Simulate loading for 3 seconds
+ 
+  }, []);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -85,7 +99,7 @@ function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <div className={`flex ${welcomeLoading && !isUserLoggedIn ? "opacity-80" :" "} flex-col min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black`}>
       {/* Hero Section with Background Image */}
       <div>
       <Slider {...settings}>
@@ -117,7 +131,26 @@ function HomePage() {
             <p className="text-xs mt-1 sm:text-md opacity-80">From the Student, By the Student, For the Student</p>
           </div>
         </section> */}
-      </div>
+      </div> 
+      {welcomeLoading && !isUserLoggedIn  && <div className="loader-container">
+          <div className="animation-wrapper">
+            <div className="cube">
+              <div className="face front"></div>
+              <div className="face back"></div>
+              <div className="face left"></div>
+              <div className="face right"></div>
+              <div className="face top"></div>
+              <div className="face bottom"></div>
+            </div>
+          </div>
+          <h1 className="loader-text flex flex-col">
+          <span>
+          Welcome to
+
+          </span>
+          <span>Campus Connect</span>
+            </h1>
+        </div>}
 
       {!isUserLoggedIn ? (
         <div className="flex justify-center items-center gap-10 flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-black min-h-[305px] md:h-[385px]">
@@ -126,7 +159,7 @@ function HomePage() {
               src={"https://cdni.iconscout.com/illustration/premium/thumb/boy-is-running-to-deliver-the-parcel-illustration-download-in-svg-png-gif-file-formats--delivery-man-with-box-shipping-service-courier-home-food-pack-services-illustrations-8401148.png?f=webp"}
               alt="GIF"
               className="rounded-lg shadow-lg w-[205px] mb-[40px] h-auto"
-              onClick={() => navigate('/auth')}
+              onClick={() => navigate('/auth-login')}
             />
           </div>
          
@@ -135,7 +168,7 @@ function HomePage() {
               src='/explain.png'
               alt=""
               className="rounded-lg mt-[100px] shadow-lg w-[320px] mb-[40pxw-[320px]] h-auto"
-              onClick={() => navigate('/auth')}
+              onClick={() => navigate('/auth-login')}
             />
           </div>
           
@@ -188,7 +221,7 @@ function HomePage() {
           <div className="mt-6 p-5 flex items-center justify-center flex-col gap-4">
             <Link
               to="/Services"
-              className="relative flex justify-center items-center p-4 w-[300px] bg-green-600 rounded-3xl flex justify-start items-center gap-4 text-white font-bold shadow-lg text-center transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-r hover:from-[#c58048] hover:to-[#d88a3c]"
+              className="relative justify-center items-center p-4 w-[280px] bg-green-600 rounded-3xl flex  items-center gap-4 text-white font-bold shadow-lg text-center transform transition-transform duration-300 hover:scale-110 hover:shadow-2xl hover:bg-gradient-to-r hover:from-[#c58048] hover:to-[#d88a3c]"
             >
               {/* <FaShoppingCart className="text-xl" /> */}
               <FaSchool size={25}/>On Campus Services

@@ -244,6 +244,9 @@ const Profile = () => {
                       {access.user?.email || "No Email"}
                     </p>
                     <p className="text-gray-300">
+                      <span className="font-semibold">Mobile:</span> {access.phoneNumber}
+                    </p>
+                    <p className="text-gray-300">
                       <span className="font-semibold">Count:</span> {access.count}
                     </p>
                     <button
@@ -287,6 +290,10 @@ const Profile = () => {
                     <p className="text-gray-300">
                       <span className="font-semibold">Email:</span>{" "}
                       {access.user?.email || "No Email"}
+                    </p>
+                    <p className="text-gray-300">
+                      <span className="font-semibold">Mobile:</span>{" "}
+                      {access.user?.phoneNumber || "No Number"}
                     </p>
 
                     <button

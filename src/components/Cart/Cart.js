@@ -5,6 +5,10 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { userActions } from "../../store/reducers";
 import { useDispatch } from "react-redux";
 import Loader from "../Loader";
+import { BiSolidEditLocation } from "react-icons/bi";
+import { MdLocationOn } from 'react-icons/md';
+import { toast } from "react-toastify";
+
 
 const RequestedToList = () => {
   const dispatch = useDispatch();
@@ -14,8 +18,12 @@ const RequestedToList = () => {
   const [otherLoading, setOtherLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showFoodCart, setShowFoodCart] = useState(false); // Toggle for food cart
-  const [showServicesCart, setShowServicesCart] = useState(false); // Toggle for services cart
+  const [showServicesCart, setShowServicesCart] = useState(false);
+  const [location,setLocation]=useState("")
+  const [otherLocation,setOtherLocation]=useState("")
+  const [mobile,setMobile]=useState("")
   const currentUserId = localStorage.getItem("UserId");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +36,10 @@ const RequestedToList = () => {
 
       try {
         const { data } = await axios.get(`/user/${userId}`);
+        setLocation(data.newuser?.location)
+        setOtherLocation(data.newuser?.otherLocation)
+        setMobile(data.newuser?.phoneNumber)
+
         setRequestedUsers(data.newuser?.requestedTo || []);
         setOtherRequestedUsers(data.newuser?.OtherRequestedTo || []);
       } catch (err) {
@@ -73,6 +85,7 @@ const RequestedToList = () => {
     try {
       const res1 = await axios.delete(`/user/${userId}/request/${index}`);
       if (res1.status === 200) {
+        toast.success('Successfully deleted')
         setRequestedUsers((prev) => prev.filter((_, i) => i !== index));
         const res2 = await axios.get(`/user/cart/${currentUserId}`);
         if (res2.status === 200) {
@@ -136,7 +149,7 @@ const RequestedToList = () => {
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">
                     Request #{index + 1}
                   </h3>
-                  <div className="mb-3">
+                  <div className="mb-3 flex justify-center items-center flex-col gap-2">
                     <p className="text-sm text-gray-600">
                       <span className="font-semibold text-gray-800">Name:</span>{" "}
                       {item.userDetails?.name || "Not Available"}
@@ -148,6 +161,10 @@ const RequestedToList = () => {
                     <p className="text-sm text-gray-600">
                       <span className="font-semibold text-gray-800">Service Count:</span>{" "}
                       {item.serviceCount}
+                    </p>
+                    <p className="text-sm flex justify-center items-center text-gray-600">
+                      <span className="font-semibold text-gray-800">location:</span>{" "}
+                      <MdLocationOn/>{location}
                     </p>
                   </div>
                   <div className="flex justify-center items-center mb-3">
@@ -184,13 +201,17 @@ const RequestedToList = () => {
                     <span className="font-semibold text-gray-800">Requested Time:</span>{" "}
                     {new Date(item.createdAt).toLocaleString()}
                   </p>
-                  {["approved", "rejected"].includes(item.status) && ( // Only show delete button for approved or rejected status
-                    <button
+                  {["approved", "rejected"].includes(item.status) && (
+                     <div>
+
+                     <button
                       onClick={() => handleDelete(index)}
-                      className="w-full px-4 py-1 bg-red-500 p-1 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm transform hover:translate-y-1 transition-all duration-300"
+                      className="w-full px-4 py-2 bg-red-500 p-1 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm transform hover:translate-y-1 transition-all duration-300"
                     >
                       Delete
                     </button>
+                     </div>
+                    
                   )}
                 </div>
               ))}
@@ -217,7 +238,7 @@ const RequestedToList = () => {
                   <h3 className="text-xl font-semibold text-gray-800 mb-3">
                     Request #{index + 1}
                   </h3>
-                  <div className="mb-3">
+                  <div className="mb-3 flex flex-col justify-start items-center gap-2">
                     <p className="text-sm text-gray-600">
                       <span className="font-semibold text-gray-800">Name:</span>{" "}
                       {item.userDetails?.name || "Not Available"}
@@ -225,6 +246,10 @@ const RequestedToList = () => {
                     <p className="text-sm text-gray-600">
                       <span className="font-semibold text-gray-800">Email:</span>{" "}
                       {item.userDetails?.email || "Not Available"}
+                     </p>
+                    <p className="text-sm flex justify-start items-center text-gray-600">
+                      <span className="font-semibold flex  text-gray-800">location:</span>{" "}
+                      <MdLocationOn/>{otherLocation}
                     </p>
                   </div>
                   <div className="flex justify-center items-center mb-3">
@@ -261,13 +286,15 @@ const RequestedToList = () => {
                     <span className="font-semibold text-gray-800">Requested Time:</span>{" "}
                     {new Date(item.createdAt).toLocaleString()}
                   </p>
-                  {["approved", "rejected"].includes(item.status) && ( // Only show delete button for approved or rejected status
+                  {["approved", "rejected"].includes(item.status) && (<>  
                     <button
                       onClick={() => handleOtherDelete(index)}
                       className="w-full px-4 py-1 bg-red-500 p-1 hover:bg-cyan-700 text-white text-sm font-semibold rounded-lg shadow-sm  transform hover:translate-y-1 transition-all duration-300"
                     >
                       Delete
                     </button>
+                    <p className="text-black font-semibold ">delete the request to make a new request</p>
+                    </>
                   )}
                 </div>
               ))}

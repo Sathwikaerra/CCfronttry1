@@ -109,12 +109,22 @@ const Navbar = () => {
   </span> */}
 </Link>
 
-            </li> :<Link to="/auth">
-              <button className="flex items-center text-[20px] justify-center bg-white text-blue-500 py-2.5 px-4  rounded-full shadow-md hover:bg-blue-100 transition duration-300 text-xs sm:text-base">
-                <FaSignInAlt className="mr-2" />
-                Login
+            </li> :
+            <div className='flex justify-center items-center gap-4'>
+              <Link to="/auth-login">
+              <button className="flex items-center text-[20px] justify-center  text-white font-semibold shadow-md hover:bg-blue-100 hover:p-2 hover:rounded-lg hover:text-black  text-xs sm:text-base">
+                {/* <FaSignInAlt className="mr-2" /> */}
+                SignIn
               </button>
-            </Link>}
+            </Link>
+            <Link to="/auth-signup">
+              <button className="flex items-center text-[20px] justify-center text-white font-semibold shadow-md  hover:bg-blue-100 hover:p-2 hover:rounded-lg hover:text-black  text-xs sm:text-base">
+                {/* <FaSignInAlt className="mr-2" /> */}
+                SignUp
+              </button>
+            </Link>
+            </div>
+            }
        
 
         {/* Links */}

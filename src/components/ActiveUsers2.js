@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getOtherServiceUsers } from './ApI/Api';
 import { useNavigate } from "react-router-dom";
+import { MdLocationOn } from 'react-icons/md';
 
 const ActiveUsers2 = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const ActiveUsers2 = () => {
       {showActiveUsers && (
         <ul className="space-y-2  mt-[30px]">
           {activeUsers.length > 0 ? (
-            activeUsers.map((user) => (
+            activeUsers.map((user) => ( 
               <li
                 onClick={() => navigate(`/orders/other/${user._id}`)}
                 key={user._id}
@@ -57,9 +58,19 @@ const ActiveUsers2 = () => {
                     : 'bg-gradient-to-r from-red-400 to-red-500 text-white hover:from-red-500 hover:to-red-600' // Inactive user: Red gradient
                 } shadow-lg hover:shadow-2xl`}
               >
-                <div className="flex justify-center items-center space-x-3">
-                  <p className="font-semibold  text-black text-md">{user.name}</p>
-                </div>
+             <div className="flex flex-col p-2 bg-gray-800 rounded-lg shadow-lg w-full max-w-sm">
+  {/* Username and Bars Row */}
+  <div className="flex items-center justify-between w-full mb-2">
+    <span className="font-bold text-white text-xl">{user.name}</span>
+  </div>
+
+  {/* Location Row */}
+  <div className="flex items-center gap-2 text-white">
+    <MdLocationOn size={20} className="text-red-500" />
+    <i className="text-sm">{user.otherLocation}</i>
+  </div>
+</div>
+
               </li>
             ))
           ) : (

@@ -208,6 +208,7 @@
 
 import React, { useState } from 'react';
 import AuthForm from './AuthForm';
+import AuthFormSignUp from  './AuthFormSignup'
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -358,15 +359,15 @@ const Auth = () => {
 
   return (
     <div className="w-full flex justify-center items-center flex-col relative">
-    {notification && (
-      <div
-        className={`fixed top-3 right-3 px-4 py-2 text-sm rounded shadow-md ${
-          notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
-        } text-white`}
-      >
-        {notification.message}
-      </div>
-    )}
+   {notification && (
+  <div
+    className={`fixed top-3 right-3 px-4 py-2 text-sm rounded shadow-md z-50 ${
+      notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    } text-white`}
+  >
+    {notification.message}
+  </div>
+)}
   
     <div className={`relative mt-16 w-full flex justify-center`}>
       {loading && (
@@ -404,7 +405,7 @@ const Auth = () => {
             </button>
           </>
         ) : (
-          <AuthForm onsubmit={handleAuthSubmit} />
+          <AuthFormSignUp onsubmit={handleAuthSubmit} />
         )}
       </div>
     </div>

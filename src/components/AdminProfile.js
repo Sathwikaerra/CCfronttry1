@@ -116,7 +116,7 @@ const AdminProfile = () => {
 
                   <div className="flex items-center justify-between mb-4">
                     <p className="text-gray-200 font-medium text-sm sm:text-base">Email:</p>
-                    <span className="text-gray-400 text-sm sm:text-base">{user.email}</span>
+                    <span className="text-gray-400 flex flex-wrap text-sm sm:text-base">{user.email}</span>
                   </div>
 
                   <div className="flex items-center justify-between">

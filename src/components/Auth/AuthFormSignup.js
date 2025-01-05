@@ -12,7 +12,7 @@ const AuthForm = ({ onsubmit }) => {
     phoneNumber: '',
     password: '',
   });
-  const [signup, setSignup] = useState(false);
+  const [signup, setSignup] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showTerms, setShowTerms] = useState(false); // State to toggle Terms and Conditions
   const [agreedToTerms, setAgreedToTerms] = useState(false);
@@ -92,7 +92,7 @@ const AuthForm = ({ onsubmit }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-800 via-gray-900 w-[300px] to-black p-4 sm:p-10 rounded-3xl shadow-2xl  max-w-sm mx-auto text-gray-200 font-sans">
+    <div className="bg-gradient-to-br mt-[50px] from-gray-800 via-gray-900 w-[300px] to-black p-4 sm:p-10 rounded-3xl shadow-2xl  max-w-sm mx-auto text-gray-200 font-sans">
       <ToastContainer position="top-right" autoClose={3000} />
 
       <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">

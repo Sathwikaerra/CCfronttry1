@@ -40,6 +40,8 @@ import OtherRequest from './components/OtherRequest';
 import AdminOperations from './components/Admin-operations';
 import MergedProfile from './components/MergedProfile'
 import MergedCart from './components/Cart/MergedCart'
+import AuthformSignup from './components/Auth/AuthFormSignup'
+import AuthSignUp from './components/Auth/AuthSignUp'
 
 
 
@@ -118,9 +120,10 @@ function App() {
 
         <Route path='/help' element={<FAQ/>}/>
         {isAdminLoggedIn && <Route path='/admin-operations' element={<AdminOperations/>}/>}
+        {!isUserLoggedIn && !isAdminLoggedIn && <Route path='/auth-signup' element={<AuthSignUp/>}/>}
         
 
-{       !isUserLoggedIn && !isAdminLoggedIn &&  <Route path='/auth' element={<Auth/>}/>
+{       !isUserLoggedIn && !isAdminLoggedIn &&  <Route path='/auth-login' element={<Auth/>}/>
 }      </Routes>
     </div>
   );
