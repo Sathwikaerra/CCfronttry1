@@ -69,6 +69,7 @@ const Ordering = () => {
         requestedBy: currentUserId,
         status: "pending",
         identifier,
+        otherLocation:user.otherLocation,
         phoneNumber:currentUser.phoneNumber
       });
 
@@ -85,7 +86,7 @@ const Ordering = () => {
 
       setPendingRequest(true);
       setTimeout(() => {
-        navigate("/");
+        navigate("/two-cart");
       }, 1000);
     } catch (err) {
       setError("Failed to send request.");

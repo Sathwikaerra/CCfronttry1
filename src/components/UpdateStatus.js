@@ -18,7 +18,7 @@ const ToggleActiveStatus = () => {
   const notificationTimeout = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUser = async () => { 
       try {
         const res = await getUser(userId);
         setCurrentUser(res.newuser);

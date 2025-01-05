@@ -12,9 +12,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 // https://ccback2.onrender.com/
 
 // https://ccbackfinaleeploy.onrender.com
-//https://ccvercel2.vercel.app/
 //
-axios.defaults.baseURL='http://localhost:5000/';
+//
+axios.defaults.baseURL='https://ccvercel2.vercel.app/';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

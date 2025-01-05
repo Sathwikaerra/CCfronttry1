@@ -52,6 +52,8 @@ const RequestedToList = () => {
 
     fetchData();
   }, []);
+  // console.log(location,otherLocation)
+
 
   const handleOtherDelete = async (index) => {
     const userId = localStorage.getItem("UserId");
@@ -164,7 +166,7 @@ const RequestedToList = () => {
                     </p>
                     <p className="text-sm flex justify-center items-center text-gray-600">
                       <span className="font-semibold text-gray-800">location:</span>{" "}
-                      <MdLocationOn/>{location}
+                      <MdLocationOn/>{item.location}
                     </p>
                   </div>
                   <div className="flex justify-center items-center mb-3">
@@ -194,7 +196,7 @@ const RequestedToList = () => {
                           <AiOutlineCheckCircle className="mr-2" size={18} />
                           Pending
                         </span>
-                      ) : null}
+                      ) : null} 
                     </span>
                   </div>
                   <p className="text-xs text-gray-500 mb-4">
@@ -249,7 +251,7 @@ const RequestedToList = () => {
                      </p>
                     <p className="text-sm flex justify-start items-center text-gray-600">
                       <span className="font-semibold flex  text-gray-800">location:</span>{" "}
-                      <MdLocationOn/>{otherLocation}
+                      <MdLocationOn/>{item.otherLocation}
                     </p>
                   </div>
                   <div className="flex justify-center items-center mb-3">

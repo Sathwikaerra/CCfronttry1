@@ -43,6 +43,7 @@ const Ordering = () => {
     }
   };
 
+
   // Confirm Service Selection
   const handleConfirmSelection = async () => {
     try {
@@ -63,6 +64,7 @@ const Ordering = () => {
         status: "pending",
         identifier,
         phoneNumber:currentUser.phoneNumber,
+        location:user.location
         
 
       });
@@ -81,7 +83,7 @@ const Ordering = () => {
       setConfirmedBars(selectedBars);
       setPendingRequest(true);
       setSelectedBars([]);
-      setTimeout(() => navigate("/"), 3000);
+      setTimeout(() => navigate("/two-cart"), 3000);
     } catch (err) {
       setError("Failed to send request.");
       toast.error("Error sending request. Please try again.");
@@ -90,6 +92,8 @@ const Ordering = () => {
       setShowModal(false);
     }
   };
+  // console.log(user)
+
 
   // Handle Modal Close with Escape Key
   useEffect(() => {
