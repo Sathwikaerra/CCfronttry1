@@ -46,13 +46,13 @@ const ActiveUsers = () => {
 
       {/* Conditionally render the list of active users */}
       {showActiveUsers && (
-        <ul className="space-y-2  flex justify-center items-center  mt-[30px]">
+        <ul className="space-y-2 w-[200px] mx-auto  flex flex-col  justify-center items-center  mt-[30px]">
           {activeUsers.length > 0 ? (
             activeUsers.map((user) => (
               <li 
               onClick={() => navigate(`/orders/${user._id}`)}
               key={user._id}
-              className={`flex flex-col justify-center w-[450px] p-2  items-center   border-b border-gray-200 rounded-lg transition duration-300 ${
+              className={`flex flex-col justify-center w-[300px] p-2  items-center   border-b border-gray-200 rounded-lg transition duration-300 ${
                 user.active
                   ? 'bg-sky-700 text-white hover:from-green-500 hover:to-green-600' // Active user: Green gradient
                   : 'bg-gradient-to-r from-red-400 to-red-500 text-white hover:from-red-500 hover:to-red-600' // Inactive user: Red gradient
@@ -60,7 +60,7 @@ const ActiveUsers = () => {
               >
              <div className="flex flex-col p-2 bg-gray-800 rounded-lg shadow-lg w-full max-w-sm">
   {/* Username and Bars Row */}
-  <div className="flex items-center justify-between w-full mb-2">
+  <div className="flex items-center justify-between  mb-2">
     <span className="font-bold text-white text-xl">{user.name}</span>
     <div className="flex gap-1">
       {Array.from({ length: user.serviceCount }).map((_, index) => (
